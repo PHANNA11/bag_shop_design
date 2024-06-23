@@ -284,11 +284,13 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                 ),
                 Positioned(
                     top: height / 5 - 10,
-                    right: width / 5 - 50,
-                    child: Container(
-                      height: 200,
-                      width: 200,
+                    right: width / 5 - 40,
+                    child: Hero(
+                      tag: '${widget.product!.name}${widget.product!.code}',
                       child: Image(
+                          height: 200,
+                          width: 200,
+                          fit: BoxFit.scaleDown,
                           image: AssetImage(widget.product!.image.toString())),
                     ))
               ],

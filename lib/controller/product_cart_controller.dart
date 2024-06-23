@@ -7,4 +7,10 @@ class ProductCartController extends GetxController {
     cartList.add(product);
     update();
   }
+
+  void removeItemFromCart({required ProductModel pro}) async {
+    cartList
+        .removeAt(cartList.indexWhere((element) => element.code == pro.code));
+    update();
+  }
 }

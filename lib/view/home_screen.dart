@@ -151,45 +151,49 @@ class _HomeScreenState extends State<HomeScreen> {
                     itemBuilder: (context, index) => Padding(
                         padding: const EdgeInsets.all(4),
                         child: GestureDetector(
-                          onTap: () {
-                            Get.to(() => DetailProductScreen(
-                                  product: productsFilter[index],
-                                ));
-                          },
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: HexColor(productsFilter[index]
-                                          .backgroundColor!
-                                          .toString()),
-                                      borderRadius: BorderRadius.circular(10),
-                                      image: DecorationImage(
-                                          image: AssetImage(
-                                              productsFilter[index]
-                                                  .image
-                                                  .toString()))),
+                            onTap: () {
+                              Get.to(() => DetailProductScreen(
+                                    product: productsFilter[index],
+                                  ));
+                            },
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Hero(
+                                    tag:
+                                        '${productsFilter[index].name}${productsFilter[index].code}',
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: HexColor(productsFilter[index]
+                                              .backgroundColor!
+                                              .toString()),
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          image: DecorationImage(
+                                              image: AssetImage(
+                                                  productsFilter[index]
+                                                      .image
+                                                      .toString()))),
+                                    ),
+                                  ),
                                 ),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(productsFilter[index].name.toString()),
-                                  Text(productsFilter[index].code.toString()),
-                                ],
-                              ),
-                              Text(
-                                '\$ ${productsFilter[index].price}',
-                                style: const TextStyle(
-                                    color: Colors.red,
-                                    fontWeight: FontWeight.bold),
-                              )
-                            ],
-                          ),
-                        )),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(productsFilter[index].name.toString()),
+                                    Text(productsFilter[index].code.toString()),
+                                  ],
+                                ),
+                                Text(
+                                  '\$ ${productsFilter[index].price}',
+                                  style: const TextStyle(
+                                      color: Colors.red,
+                                      fontWeight: FontWeight.bold),
+                                )
+                              ],
+                            ))),
                   ),
                 ),
               ],
