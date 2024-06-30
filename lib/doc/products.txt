@@ -1,0 +1,21 @@
+ CollectionReference dataRefProducts =
+      FirebaseFirestore.instance.collection('Products');
+==> Add Product
+    #==== data =====#
+    Map<String, dynamic> pro
+   = {
+      'code': code,
+      'name': name,
+      'price': price,
+      'image': image,
+      'category_id': categoryId,
+      'description': description,
+      'size': 12.0,
+      'qty': qty,
+      'favorite': favorite,
+      'background_color': backgroundColor,
+      'varriant_colors': varriantColors
+
+  }
+    // process add to Firebase
+    dataRefProducts.add(pro);

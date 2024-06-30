@@ -37,6 +37,10 @@ dependencies:
   get: ^4.6.5
   hexcolor: ^3.0.1
   badges: ^3.1.1
+  # Firebase
+  firebase_auth: ^4.12.1
+  firebase_core: ^2.18.0
+  cloud_firestore: ^4.12.2
 
 dev_dependencies:
   flutter_test:

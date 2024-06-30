@@ -23,6 +23,21 @@ class ProductModel {
     this.varriantColors,
     this.backgroundColor,
   });
+  Map<String, dynamic>? toMap() {
+    return {
+      'code': code,
+      'name': name,
+      'price': price,
+      'image': image,
+      'category_id': categoryId,
+      'description': description,
+      'size': 12.0,
+      'qty': qty,
+      'favorite': favorite,
+      'background_color': backgroundColor,
+      'varriant_colors': varriantColors
+    };
+  }
 }
 
 List<ProductModel> productList = [

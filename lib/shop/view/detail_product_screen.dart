@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:shop_bags/controller/product_cart_controller.dart';
-import 'package:shop_bags/model/product_model.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:shop_bags/view/cart_list_screen.dart';
+import 'package:shop_bags/shop/view/cart_list_screen.dart';
+
+import '../controller/product_cart_controller.dart';
+import '../model/product_model.dart';
 
 class DetailProductScreen extends StatefulWidget {
   DetailProductScreen({super.key, required this.product});
@@ -22,7 +23,7 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
   @override
   void initState() {
     // TODO: implement initState
-    selectedVarriant = widget.product!.varriantColors!.first.toString().obs;
+    // selectedVarriant = widget.product!.varriantColors!.first.toString().obs;
     isFavorite = widget.product!.favorite!;
     super.initState();
   }
@@ -79,7 +80,7 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                       child: Column(children: [
                         Text(widget.product!.name.toString()),
                         Text(
-                          'Code : ${widget.product!.name}',
+                          'Code : ${widget.product!.code}',
                           style: const TextStyle(fontWeight: FontWeight.bold),
                         )
                       ]),
@@ -104,53 +105,53 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                                     const EdgeInsets.only(top: 10, bottom: 10),
                                 child: Row(
                                   children: [
-                                    Expanded(
-                                        child: SizedBox(
-                                      height: 70,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const Text(
-                                            'Colors',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                          Obx(() => Row(
-                                                children: List.generate(
-                                                    widget.product!
-                                                        .varriantColors!.length,
-                                                    (index) => GestureDetector(
-                                                          onTap: () {
-                                                            selectedVarriant(widget
-                                                                .product!
-                                                                .varriantColors![
-                                                                    index]
-                                                                .toString());
-                                                          },
-                                                          child: Icon(
-                                                            selectedVarriant
-                                                                        .value ==
-                                                                    widget
-                                                                        .product!
-                                                                        .varriantColors![
-                                                                            index]
-                                                                        .toString()
-                                                                ? Icons
-                                                                    .radio_button_checked
-                                                                : Icons.circle,
-                                                            size: 30,
-                                                            color: HexColor(widget
-                                                                .product!
-                                                                .varriantColors![
-                                                                    index]
-                                                                .toString()),
-                                                          ),
-                                                        )),
-                                              ))
-                                        ],
-                                      ),
-                                    )),
+                                    // Expanded(
+                                    //     child: SizedBox(
+                                    //   height: 70,
+                                    //   child: Column(
+                                    //     crossAxisAlignment:
+                                    //         CrossAxisAlignment.start,
+                                    //     children: [
+                                    //       const Text(
+                                    //         'Colors',
+                                    //         style: TextStyle(
+                                    //             fontWeight: FontWeight.bold),
+                                    //       ),
+                                    //       Obx(() => Row(
+                                    //             children: List.generate(
+                                    //                 widget.product!
+                                    //                     .varriantColors!.length,
+                                    //                 (index) => GestureDetector(
+                                    //                       onTap: () {
+                                    //                         selectedVarriant(widget
+                                    //                             .product!
+                                    //                             .varriantColors![
+                                    //                                 index]
+                                    //                             .toString());
+                                    //                       },
+                                    //                       child: Icon(
+                                    //                         selectedVarriant
+                                    //                                     .value ==
+                                    //                                 widget
+                                    //                                     .product!
+                                    //                                     .varriantColors![
+                                    //                                         index]
+                                    //                                     .toString()
+                                    //                             ? Icons
+                                    //                                 .radio_button_checked
+                                    //                             : Icons.circle,
+                                    //                         size: 30,
+                                    //                         color: HexColor(widget
+                                    //                             .product!
+                                    //                             .varriantColors![
+                                    //                                 index]
+                                    //                             .toString()),
+                                    //                       ),
+                                    //                     )),
+                                    //           ))
+                                    //     ],
+                                    //   ),
+                                    // )),
                                     SizedBox(
                                       height: 70,
                                       child: Column(
@@ -161,7 +162,7 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                                             'Size',
                                           ),
                                           Text(
-                                            '${widget.product!.size} cm',
+                                            '${widget.product!.size.toString()} cm',
                                             style: const TextStyle(
                                                 fontWeight: FontWeight.bold),
                                           ),
@@ -291,7 +292,8 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                           height: 200,
                           width: 200,
                           fit: BoxFit.scaleDown,
-                          image: AssetImage(widget.product!.image.toString())),
+                          image:
+                              NetworkImage(widget.product!.image.toString())),
                     ))
               ],
             ),
