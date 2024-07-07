@@ -9,7 +9,7 @@ class ProductModel {
   bool? favorite;
   int? qty;
   String? backgroundColor;
-  List<String>? varriantColors;
+  List<dynamic>? varriantColors;
   ProductModel({
     this.code,
     this.name,

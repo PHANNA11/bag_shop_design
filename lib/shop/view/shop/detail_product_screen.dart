@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:shop_bags/shop/view/cart_list_screen.dart';
 
-import '../controller/product_cart_controller.dart';
-import '../model/product_model.dart';
+import '../../controller/product_cart_controller.dart';
+import '../../model/product_model.dart';
+import 'cart_list_screen.dart';
 
 class DetailProductScreen extends StatefulWidget {
   DetailProductScreen({super.key, required this.product});
@@ -105,53 +105,59 @@ class _DetailProductScreenState extends State<DetailProductScreen> {
                                     const EdgeInsets.only(top: 10, bottom: 10),
                                 child: Row(
                                   children: [
-                                    // Expanded(
-                                    //     child: SizedBox(
-                                    //   height: 70,
-                                    //   child: Column(
-                                    //     crossAxisAlignment:
-                                    //         CrossAxisAlignment.start,
-                                    //     children: [
-                                    //       const Text(
-                                    //         'Colors',
-                                    //         style: TextStyle(
-                                    //             fontWeight: FontWeight.bold),
-                                    //       ),
-                                    //       Obx(() => Row(
-                                    //             children: List.generate(
-                                    //                 widget.product!
-                                    //                     .varriantColors!.length,
-                                    //                 (index) => GestureDetector(
-                                    //                       onTap: () {
-                                    //                         selectedVarriant(widget
-                                    //                             .product!
-                                    //                             .varriantColors![
-                                    //                                 index]
-                                    //                             .toString());
-                                    //                       },
-                                    //                       child: Icon(
-                                    //                         selectedVarriant
-                                    //                                     .value ==
-                                    //                                 widget
-                                    //                                     .product!
-                                    //                                     .varriantColors![
-                                    //                                         index]
-                                    //                                     .toString()
-                                    //                             ? Icons
-                                    //                                 .radio_button_checked
-                                    //                             : Icons.circle,
-                                    //                         size: 30,
-                                    //                         color: HexColor(widget
-                                    //                             .product!
-                                    //                             .varriantColors![
-                                    //                                 index]
-                                    //                             .toString()),
-                                    //                       ),
-                                    //                     )),
-                                    //           ))
-                                    //     ],
-                                    //   ),
-                                    // )),
+                                    Expanded(
+                                        child: SizedBox(
+                                      height: 70,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const Text(
+                                            'Colors',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                          if (widget.product!.varriantColors!
+                                              .isNotEmpty)
+                                            Obx(() => Row(
+                                                  children: List.generate(
+                                                      widget
+                                                          .product!
+                                                          .varriantColors!
+                                                          .length,
+                                                      (index) =>
+                                                          GestureDetector(
+                                                            onTap: () {
+                                                              selectedVarriant(widget
+                                                                  .product!
+                                                                  .varriantColors![
+                                                                      index]
+                                                                  .toString());
+                                                            },
+                                                            child: Icon(
+                                                              selectedVarriant
+                                                                          .value ==
+                                                                      widget
+                                                                          .product!
+                                                                          .varriantColors![
+                                                                              index]
+                                                                          .toString()
+                                                                  ? Icons
+                                                                      .radio_button_checked
+                                                                  : Icons
+                                                                      .circle,
+                                                              size: 30,
+                                                              color: HexColor(widget
+                                                                  .product!
+                                                                  .varriantColors![
+                                                                      index]
+                                                                  .toString()),
+                                                            ),
+                                                          )),
+                                                ))
+                                        ],
+                                      ),
+                                    )),
                                     SizedBox(
                                       height: 70,
                                       child: Column(

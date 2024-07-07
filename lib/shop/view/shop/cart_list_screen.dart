@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 
-import '../controller/product_cart_controller.dart';
+import '../../controller/product_cart_controller.dart';
 
 class CartListScreen extends StatelessWidget {
   CartListScreen({super.key});
@@ -42,7 +42,7 @@ class CartListScreen extends StatelessWidget {
                                 .cartList[index].backgroundColor
                                 .toString()),
                             image: DecorationImage(
-                                image: AssetImage(productCartController
+                                image: NetworkImage(productCartController
                                     .cartList[index].image
                                     .toString()))),
                       ),

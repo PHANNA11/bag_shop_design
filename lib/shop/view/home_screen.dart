@@ -1,18 +1,17 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shop_bags/auth/view/login_screen.dart';
-import 'package:shop_bags/shop/view/detail_product_screen.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:shop_bags/shop/view/account/account_dashbord.dart';
+import 'package:shop_bags/shop/view/shop/cart_list_screen.dart';
 
 import '../controller/product_cart_controller.dart';
 import '../model/category_model.dart';
 import '../model/product_model.dart';
-import 'cart_list_screen.dart';
+import 'shop/detail_product_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -48,6 +47,37 @@ class _HomeScreenState extends State<HomeScreen> {
             child: SafeArea(
               child: Column(
                 children: [
+                  ListTile(
+                    onTap: () async {
+                      Get.to(() => const AccountDashBoard());
+                    },
+                    leading: const Icon(Icons.person),
+                    title: const Text('Sale Account'),
+                    //  trailing: const Icon(Icons.person),
+                  ),
+                  const Divider(),
+                  ListTile(
+                    onTap: () async {
+                     // Get.to(() => const AccountDashBoard());
+                    },
+                    leading: const Icon(Icons.production_quantity_limits),
+                    title: const Text('Stock'),
+                    //  trailing: const Icon(Icons.person),
+                  ),
+                  const Divider(),
+                  ListTile(
+                    onTap: () async {
+                     // Get.to(() => const AccountDashBoard());
+                    },
+                    leading: const Icon(Icons.history),
+                    title: const Text('Sale History'),
+                    //  trailing: const Icon(Icons.person),
+                  ),
+                  // ExpansionTile(title: Text('Menu'),children: [
+                  //   Text('Menu A'),
+                  //    Text('Menu B'), Text('Menu C')
+                  // ],)
+                  const Spacer(),
                   ListTile(
                     onTap: () async {
                       await FirebaseAuth.instance.signOut().whenComplete(() {
@@ -112,8 +142,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: StreamBuilder(
                     stream: dataRefCategory.orderBy("id").snapshots(),
                     builder: (context, snapshot) {
-                      return snapshot.connectionState ==
-                              ConnectionState.waiting
+                      return snapshot.connectionState == ConnectionState.waiting
                           ? const Center(
                               child: CircularProgressIndicator(),
                             )
@@ -144,9 +173,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   dividerColor: Colors.white,
                                   indicatorColor: Colors.white,
                                   splashBorderRadius: BorderRadius.zero,
-                                  overlayColor:
-                                      const MaterialStatePropertyAll(
-                                          Colors.white),
+                                  overlayColor: const MaterialStatePropertyAll(
+                                      Colors.white),
                                   tabs: List.generate(
                                     snapshot.data!.docs.length,
                                     (index) {
@@ -162,9 +190,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                               borderRadius:
                                                   BorderRadius.circular(10)),
                                           child: Padding(
-                                            padding:
-                                                const EdgeInsets.symmetric(
-                                                    horizontal: 8),
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 8),
                                             child: Center(
                                               child: Text(
                                                 data['name'].toString(),
@@ -216,10 +243,10 @@ class _HomeScreenState extends State<HomeScreen> {
                                         onTap: () {
                                           Get.to(() => DetailProductScreen(
                                                 product: ProductModel(
-                                                    code: data['code']
-                                                        .toString(),
-                                                    name: data['name']
-                                                        .toString(),
+                                                    code:
+                                                        data['code'].toString(),
+                                                    name:
+                                                        data['name'].toString(),
                                                     categoryId: int.parse(
                                                         data['category_id']
                                                             .toString()),
@@ -228,12 +255,14 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             .toString(),
                                                     image: data['image']
                                                         .toString(),
-                                                    qty: int.parse(data['qty']
-                                                        .toString()),
-                                                    size: double.parse(data['size']
-                                                        .toString()),
-                                                    description: data['description']
-                                                        .toString(),
+                                                    qty: int.parse(
+                                                        data['qty'].toString()),
+                                                    size: double.parse(
+                                                        data['size']
+                                                            .toString()),
+                                                    description:
+                                                        data['description']
+                                                            .toString(),
                                                     price: double.parse(
                                                         data['price'].toString()),
                                                     favorite: data['favorite'],
@@ -254,8 +283,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                                               'background_color']
                                                           .toString()),
                                                       borderRadius:
-                                                          BorderRadius
-                                                              .circular(10),
+                                                          BorderRadius.circular(
+                                                              10),
                                                       image: DecorationImage(
                                                           image: NetworkImage(
                                                               data['image']
@@ -276,8 +305,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               '\$ ${data['price']}',
                                               style: const TextStyle(
                                                   color: Colors.red,
-                                                  fontWeight:
-                                                      FontWeight.bold),
+                                                  fontWeight: FontWeight.bold),
                                             )
                                           ],
                                         )));
